@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShoestoreApplication {
 
 	public static void main(String[] args) {
+		// Test comment to double check GitHub updating. 
 		SpringApplication.run(ShoestoreApplication.class, args);
 	}
 }
