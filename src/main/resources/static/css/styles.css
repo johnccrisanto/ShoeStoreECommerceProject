@@ -1,0 +1,57 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+
+
+hr {
+    border: none;
+    height: 1px;
+    color: #333333;
+    background-color: #333333;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.home {
+    font-family: "Times New Roman", Times, Serif, sans-serif;
+    color: #000000;
+    margin: auto;
+    text-align: center;
+}
+
+.home-headline {
+    font-size: 2.6em;
+}
+
+.home-selection {
+    font-size: 2.0em;
+
+}
+
+.my-account-headline {
+    font-size: 2.6em;
+    text-align: left;
+}
+
+.my-account-tabs {
+    font-size: 2.0em;
+}
+
+.box {
+    border: 1px solid lightgray;;
+    border-radius: 4px;
+    padding: 20px 26px;
+}
+
+a.no-decor:hover {
+    color: #000000;
+    text-decoration: underline;
+}
