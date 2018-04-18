@@ -1,28 +1,44 @@
 package com.johncrisanto.shoestore.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.johncrisanto.shoestore.entity.security.Authority;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import com.johncrisanto.shoestore.entity.security.UserRole;
 
 @Entity
-public class User {
+public class User implements UserDetails{
 	
-    @Id
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5103640404873392457L;
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private Long id;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-    @Column(name="email", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     private String email;
     private String phoneNumber;
     private boolean isEnabled = true;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<UserRole> userRoleSet = new HashSet<>();
+
     public User () {
 
     }
-    
     public Long getId() {
         return id;
     }
@@ -83,6 +99,40 @@ public class User {
         isEnabled = enabled;
     }
 
+    public Set<UserRole> getUserRoleSet() {
+        return userRoleSet;
+    }
+
+    public void setUserRoleSet(Set<UserRole> userRoleSet) {
+        this.userRoleSet = userRoleSet;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for(UserRole userRole: userRoleSet) {
+            authorities.add(new Authority(userRole.getRole().getRoleName()));
+        }
+
+        return authorities;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
     public boolean isEnabled() {
         return isEnabled;
     }

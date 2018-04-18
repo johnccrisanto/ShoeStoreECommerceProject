@@ -55,3 +55,7 @@ a.no-decor:hover {
     color: #000000;
     text-decoration: underline;
 }
+
+.left.carousel-control, .right.carousel-control {
+	display: none;
+}
