@@ -9,18 +9,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	
 	@RequestMapping("/")
-	public String showHomePage() {
+	public String HomePage() {
 		return "index";
-	}
-	
-	@RequestMapping("/myAccount")
-	public String showMyAccountPage() {
-		return "myAccount";
 	}
 	
 	@RequestMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("classActiveLogin", true);
+		return "myAccount";
+	}
+	
+	@RequestMapping("/forgotDetails")
+	public String forgotDetails(Model model) {
+		model.addAttribute("classActiveForgotDetails", true);
+		return "myAccount";
+	}
+	
+	@RequestMapping("/newAccount")
+	public String newAccount(Model model) {
+		model.addAttribute("classActiveNewAccount", true);
 		return "myAccount";
 	}
 
