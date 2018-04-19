@@ -77,11 +77,12 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>5.0.4.RELEASE</version>
 		</dependency>
-
-
-
-
-
+		
+		<!-- Additional thymeleaf dependencies -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
 
 	</dependencies>
 

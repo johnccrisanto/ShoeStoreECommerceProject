@@ -13,7 +13,7 @@ import java.util.Set;
 import com.johncrisanto.shoestore.entity.security.UserRole;
 
 @Entity
-public class User implements UserDetails{
+public class User implements UserDetails {
 	
 	/**
 	 * 
@@ -39,6 +39,7 @@ public class User implements UserDetails{
     public User () {
 
     }
+    
     public Long getId() {
         return id;
     }
