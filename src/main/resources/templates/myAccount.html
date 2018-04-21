@@ -45,7 +45,9 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
-									<div th:if="${param.error != null}" class="alert alert-danger">You have entered a non-matching username and password.</div>
+									<div th:if="${param.error != null}" class="alert alert-danger">
+										<p>The username and password you provided did not match.</p>
+									</div>
 									<form th:action="@{/login}" method="post">
 										<div class="form-group">
 											<label for="username">Username</label> <input type="text"
@@ -69,30 +71,37 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
-									<div class="alert alert-info" th:if="${emailSent}">
+									<div class="alert alert-success" th:if="${emailSent}">
 										<p>An email has been sent to the email address you have
 											provided. Please validate your account by clicking on the
 											link sent to your email.</p>
 									</div>
+
+									<div>
+										<p class="alert alert-danger" th:if=${usernameExists}>The
+											username you provided already exists. Please choose a
+											different username.</p>
+									</div>
+
+									<div>
+										<p class="alert alert-danger" th:if=${emailExists}>The
+											email address you provided already exists. Please choose a
+											different email address.</p>
+									</div>
+
 									<form th:action="@{/newAccount}" method="post">
 										<div class="form-group">
-											<label for="username">Username</label> &nbsp; <span
-												style="color: red;" th:if=${usernameExists}>Username
-												already exists. Please choose a different username.</span> <input
-												type="text" class="form-control" required="required"
-												id="username" name="username"
-												placeholder="Your desired username..." />
+											<label for="username">Username</label><input type="text"
+												class="form-control" required="required" id="username"
+												name="username" placeholder="Your desired username..." />
 											<p
 												style="padding-top: 6px; color: #828282; font-size: 0.9em;">Please
 												enter your desired username. This username will be used for
 												login purposes.</p>
 
-											<label for="email">Email</label> &nbsp; <span
-												style="color: red;" th:if=${emailExists}>Email address
-												already exists. Please choose a different email address.</span> <input
-												type="text" class="form-control" required="required"
-												id="email" name="email"
-												placeholder="Email address for this account..." />
+											<label for="email">Email</label> <input type="text"
+												class="form-control" required="required" id="email"
+												name="email" placeholder="Email address for this account..." />
 											<p
 												style="padding-top: 6px; padding-bottom: 8px; color: #828282; font-size: 0.9em;">Please
 												enter a valid email address. All emails from the system will
@@ -116,9 +125,17 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="background-color: #ededed; margin-top: 20px;">
-									
-									<div th:if="${emailNotExists}" class="alert alert-danger"> The email address you provided does not exist.</div>
-									<div th:if="${forgotPasswordEmailSent}" class="alert alert-success"> An email has been sent to the email address you provided.</div>
+
+									<div th:if="${emailNotExists}" class="alert alert-danger">
+										<p>The email address you provided does not exist. Please
+											enter a registered email address.</p>
+									</div>
+									<div th:if="${forgotPasswordEmailSent}"
+										class="alert alert-success">
+
+										<p>An email has been sent to the email address you
+											provided.</p>
+									</div>
 									<form th:action="@{/forgotDetails}" method="post">
 										<div class="form-group">
 											<label for="email">Email</label> <input type="text"
