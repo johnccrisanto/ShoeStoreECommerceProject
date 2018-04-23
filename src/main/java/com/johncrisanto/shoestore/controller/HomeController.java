@@ -1,6 +1,7 @@
 package com.johncrisanto.shoestore.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.johncrisanto.shoestore.entity.Shoe;
 import com.johncrisanto.shoestore.entity.User;
 import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 import com.johncrisanto.shoestore.entity.security.Role;
 import com.johncrisanto.shoestore.entity.security.UserRole;
+import com.johncrisanto.shoestore.service.ShoeService;
 import com.johncrisanto.shoestore.service.UserService;
 import com.johncrisanto.shoestore.service.impl.UserSecurityService;
 import com.johncrisanto.shoestore.utility.MailConstructor;
@@ -44,6 +47,9 @@ public class HomeController {
 
 	@Autowired
 	private UserSecurityService userSecurityService;
+	
+	@Autowired
+	private ShoeService shoeService;
 
 	@RequestMapping("/")
 	public String HomePage() {
@@ -59,6 +65,13 @@ public class HomeController {
 	@RequestMapping("/processLogin")
 	public String processLogin() {
 		return "redirect:/login";
+	}
+	
+	@RequestMapping("/shoeRack")
+	public String shoeRack(Model model) {
+		List<Shoe> shoeList = shoeService.findAll();
+		model.addAttribute("shoeList", shoeList);
+		return "shoeRack";
 	}
 
 	@RequestMapping("/forgotDetails")
