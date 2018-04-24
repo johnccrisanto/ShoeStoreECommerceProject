@@ -38,7 +38,7 @@ import com.johncrisanto.shoestore.utility.SecurityUtility;
 
 @Controller
 public class HomeController {
-
+	// Git Test Comment
 	@Autowired
 	private JavaMailSender mailSender;
 
