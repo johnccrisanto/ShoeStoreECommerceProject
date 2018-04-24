@@ -6,4 +6,6 @@ import com.johncrisanto.shoestore.entity.Shoe;
 
 public interface ShoeService {
 	List<Shoe> findAll();
+
+	Shoe findById(Long id);
 }

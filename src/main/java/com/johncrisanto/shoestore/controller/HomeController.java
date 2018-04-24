@@ -1,5 +1,7 @@
 package com.johncrisanto.shoestore.controller;
 
+import java.security.Principal;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -7,6 +9,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -73,6 +76,26 @@ public class HomeController {
 		model.addAttribute("shoeList", shoeList);
 		return "shoeRack";
 	}
+	
+	@RequestMapping("/shoeDetails")
+	public String showDetails(@PathParam("id") Long id, Model model, Principal principal) {
+	
+		if(principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+		
+		Shoe shoe = shoeService.findById(id);
+		
+		List<Integer> qtyList = Arrays.asList(1,2,3,4,5,6,7,8,9,10);
+		List<Double> sizeList = Arrays.asList(7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 14.5, 15.0);
+		model.addAttribute("shoe", shoe);
+		model.addAttribute("qtyList", qtyList);
+		model.addAttribute("sizeList", sizeList);
+		return "shoeDetails";
+	}
+	
 
 	@RequestMapping("/forgotDetails")
 	public String forgotDetails(HttpServletRequest request, @ModelAttribute("email") String userEmail, Model model) {

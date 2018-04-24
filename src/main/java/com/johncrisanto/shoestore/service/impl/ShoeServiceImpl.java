@@ -19,6 +19,16 @@ public class ShoeServiceImpl implements ShoeService {
 	public List<Shoe> findAll() {
 		return (List<Shoe>)shoeRepository.findAll();
 	}
+
+	@Override
+	public Shoe findById(Long id) {
+		
+		return shoeRepository.findById(id).orElse(null);
+	}
+	
+	
+	
+	
 	
 	
 

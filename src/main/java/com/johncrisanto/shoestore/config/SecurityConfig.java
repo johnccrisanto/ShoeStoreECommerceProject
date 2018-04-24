@@ -39,7 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     		"/forgotDetails",
     		"/login",
     		"/fonts/**",
-    		"/shoeRack"
+    		"/shoeRack",
+    		"/shoeDetails**"
     		};
 
     @Override

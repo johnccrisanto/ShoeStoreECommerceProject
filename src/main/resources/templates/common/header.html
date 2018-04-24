@@ -20,6 +20,8 @@
 <!-- Custom styles for this template -->
 <link href="/css/styles.css" rel="stylesheet" />
 
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
 </head>
 
 <body>
@@ -45,7 +47,7 @@
 							<form class="navbar-form">
 								<div class="form-group">
 									<input type="text" name="keyword" class="form-control"
-										placeholder="What are you looking for?"> <input
+										placeholder="Shoe you're looking for..."> <input
 										type="submit" class="btn btn-default" value="Search">
 								</div>
 							</form>
@@ -54,16 +56,17 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Our Store<span class="caret"></span></a>
+							aria-expanded="false">Store<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li role="separator" class="divider"></li>
-								<li class="dropdown-header"><h4>Our Products</h4></li>
+								<li class="dropdown-header"><h4><u>Our Store</u></h4></li>
+								<li><a th:href="@{/}">Home Page</a></li>
 								<li><a href="#">Basketball</a></li>
 								<li><a href="#">Tennis</a></li>
 								<li><a href="#">Running</a></li>
-								<li><a th:href="@{/shoeRack}">Our Entire Shoe Rack</a></li>
+								<li><a th:href="@{/shoeRack}">List of Shoes</a></li>
 								<li role="separator" class="divider"></li>
-								<li class="dropdown-header"><h4>Other</h4></li>
+								<li class="dropdown-header"><h4><u>Other</u></h4></li>
 								<li><a href="#">Our Store Location</a></li>
 								<li><a href="#">Frequently Asked Questions</a></li>
 							</ul></li>
