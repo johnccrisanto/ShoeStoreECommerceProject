@@ -52,7 +52,7 @@
 													style="text-decoration: line-through;"></span>
 											</p>
 											
-											<p><b>Description: </b><span th:text="${#strings.abbreviate(shoe.description, 500)}"></span></p>
+											<p><b>Description: </b><span th:utext="${#strings.abbreviate(shoe.description, 500)}"></span></p>
 										</div>
 									</div>
 									
