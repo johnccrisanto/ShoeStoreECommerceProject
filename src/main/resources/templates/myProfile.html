@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="col-xs-9">
 				<h2 class="home my-account-headline">
-					<p>Welcome <span th:text=${#strings.toUpperCase(user.username)}></span>!</p>
+					<p>Welcome <span th:text=${#strings.toUpperCase(user.username)}></span></p>
 				</h2>
 			</div>
 
@@ -117,6 +117,82 @@
 						</div>
 					</div>
 
+					<!-- Order Information -->
+					<div class="tab-pane fade" id="tab-2"
+						th:classappend="${classActiveEdit}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Billing Information -->
+					<div class="tab-pane fade" id="tab-3"
+						th:classappend="${classActiveEdit}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item active">
+											<a th:href="@{/listOfCreditCard}" th:style="${listOfCreditCards}? 'color: red'">List of Credit Cards</a>
+										</li>
+										
+										<li class="breadcrumb-item active">
+											<a th:href="@{/addNewCreditCard}" th:style="${addNewCreditCard}? 'color: red'">Add(Update) Credit Card</a>
+										</li>
+									</ol>
+									
+									<div th:if="${listOfCreditCards}">
+										<form th:action="@{/setDefaultPayment}" method="post">
+											<table class="table">
+												<thead>
+													<tr>
+														<th>Default</th>
+														<th>Credit Card</th>
+														<th>Operations</th>
+													</tr>
+												</thead>
+												
+												<tbody>
+													<tr th:each="userPayment: ${userPaymentList}">
+														<td>
+															<input type="radio" name="defaultUserPaymentId" 
+															th:value="${userPayment.id}" th:checked="${userPayment.defaultPayment}" />
+														</td>
+														
+														<td th:text="${userPayment.cardName}">
+															<a th:href="@{/updateCreditCard?id=} + ${userPayment.id}"><i class="fa fa-pencil"></i></a>
+															<a th:href="@{/removeCreditCard?id=} + ${userPayment.id}"><i class="fa fa-times"></i></a>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											
+											<button class="btn btn-primary" type="submit">Save</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Shipping Information -->
+					<div class="tab-pane fade" id="tab-4"
+						th:classappend="${classActiveEdit}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+									
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ package com.johncrisanto.shoestore.controller;
 
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.johncrisanto.shoestore.entity.Shoe;
 import com.johncrisanto.shoestore.entity.User;
+import com.johncrisanto.shoestore.entity.UserShipping;
 import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 import com.johncrisanto.shoestore.entity.security.Role;
 import com.johncrisanto.shoestore.entity.security.UserRole;
@@ -35,6 +37,7 @@ import com.johncrisanto.shoestore.service.UserService;
 import com.johncrisanto.shoestore.service.impl.UserSecurityService;
 import com.johncrisanto.shoestore.utility.MailConstructor;
 import com.johncrisanto.shoestore.utility.SecurityUtility;
+import com.johncrisanto.shoestore.utility.USConstants;
 
 @Controller
 public class HomeController {
@@ -131,7 +134,29 @@ public class HomeController {
 
 		return "myAccount";
 	}
-
+	
+	@RequestMapping("/myProfile")
+	public String myProfile(Model model, Principal principal) {
+		User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute("userPaymentList", user.getUserPaymentList());
+		model.addAttribute("userShippingList", user.getUserShippingList());
+//		model.addAttribute("orderList", user.getOrderList());
+		
+		UserShipping userShipping = new UserShipping();
+		model.addAttribute("userShipping", userShipping);
+		
+		model.addAttribute("listOfCreditCards", true);
+		model.addAttribute("listOfShippingAddresses", true);
+		
+		List<String> stateList = USConstants.listOfUsStatesCode;
+		Collections.sort(stateList);
+		
+		model.addAttribute("stateList", stateList);
+		model.addAttribute("classActiveEdit", true);
+		return "myProfile";
+	}
+	
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
 	public String newAccountPost(HttpServletRequest request, @ModelAttribute("email") String userEmail,
 			@ModelAttribute("username") String username, Model model) throws Exception {
