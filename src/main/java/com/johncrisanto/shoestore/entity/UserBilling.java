@@ -18,7 +18,6 @@ public class UserBilling {
 	private String userBillingStreet2;
 	private String userBillingCity;
 	private String userBillingState;
-	private String userBillingCountry;
 	private String userBillingZipCode;
 	
 	@OneToOne(cascade = CascadeType.ALL)
@@ -70,14 +69,6 @@ public class UserBilling {
 
 	public void setUserBillingState(String userBillingState) {
 		this.userBillingState = userBillingState;
-	}
-
-	public String getUserBillingCountry() {
-		return userBillingCountry;
-	}
-
-	public void setUserBillingCountry(String userBillingCountry) {
-		this.userBillingCountry = userBillingCountry;
 	}
 
 	public String getUserBillingZipCode() {

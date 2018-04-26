@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.johncrisanto.shoestore.entity.User;
+import com.johncrisanto.shoestore.entity.UserBilling;
+import com.johncrisanto.shoestore.entity.UserPayment;
 import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 import com.johncrisanto.shoestore.entity.security.UserRole;
 import com.johncrisanto.shoestore.repository.PasswordResetTokenRepository;
@@ -76,5 +78,18 @@ public class UserServiceImpl implements UserService {
 	public User save(User user) {
 		return userRepository.save(user);
 	}
+
+	@Override
+	public void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user) {
+		userPayment.setUser(user);
+		userPayment.setUserBilling(userBilling);
+		userPayment.setDefaultPayment(true);
+		userBilling.setUserPayment(userPayment);
+		user.getUserPaymentList().add(userPayment);
+		save(user);
+		
+	}
+	
+	
 
 }
