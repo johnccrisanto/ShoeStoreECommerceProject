@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.johncrisanto.shoestore.entity.User;
 import com.johncrisanto.shoestore.entity.UserBilling;
 import com.johncrisanto.shoestore.entity.UserPayment;
+import com.johncrisanto.shoestore.entity.UserShipping;
 import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 import com.johncrisanto.shoestore.entity.security.UserRole;
 import com.johncrisanto.shoestore.repository.PasswordResetTokenRepository;
@@ -109,6 +110,17 @@ public class UserServiceImpl implements UserService {
 		}
 		
 	}
+
+	@Override
+	public void updateUserShipping(UserShipping userShipping, User user) {
+		userShipping.setUser(user);
+		userShipping.setUserShippingDefault(true);
+		user.getUserShippingList().add(userShipping);
+		save(user);
+	
+	}
+	
+	
 	
 	
 	

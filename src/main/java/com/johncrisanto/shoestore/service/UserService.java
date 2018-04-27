@@ -5,6 +5,7 @@ import java.util.Set;
 import com.johncrisanto.shoestore.entity.User;
 import com.johncrisanto.shoestore.entity.UserBilling;
 import com.johncrisanto.shoestore.entity.UserPayment;
+import com.johncrisanto.shoestore.entity.UserShipping;
 import com.johncrisanto.shoestore.entity.security.UserRole;
 import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 
@@ -24,4 +25,6 @@ public interface UserService {
 	void updateUserBilling(UserBilling userBilling, UserPayment userPayment, User user);
 
 	void setUserDefaultPayment(Long userPaymentId, User user);
+
+	void updateUserShipping(UserShipping userShipping, User user);
 }
