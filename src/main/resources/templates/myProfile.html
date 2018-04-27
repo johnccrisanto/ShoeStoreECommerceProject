@@ -21,7 +21,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<h2 class="home my-account-headline">
-					<p>
+					<p id="welcome">
 						Welcome <span th:text=${#strings.toUpperCase(user.username)}></span>!
 					</p>
 				</h2>
@@ -146,7 +146,8 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
-									<ol class="breadcrumb" style="background-color: #ffffff; padding-left:7px;">
+									<ol class="breadcrumb"
+										style="background-color: #ffffff; padding-left: 7px;">
 										<li class="breadcrumb-item active"><a
 											th:href="@{/listOfCreditCards}"
 											th:style="${listOfCreditCards}? 'color: red'">List of
@@ -154,12 +155,21 @@
 
 										<li class="breadcrumb-item active"><a
 											th:href="@{/addNewCreditCard}"
-											th:style="${addNewCreditCard}? 'color: red'">Add New Credit Card</a></li>
+											th:style="${addNewCreditCard}? 'color: red'">Add New
+												Credit Card</a></li>
 									</ol>
+
+									<div th:if="${#lists.isEmpty(userPaymentList)}"
+										class="alert alert-info">
+										<p>You currently do not have any saved credit card
+											information.</p>
+									</div>
+
 
 									<div th:if="${listOfCreditCards}">
 										<form th:action="@{/setDefaultPayment}" method="post">
-											<table class="table">
+											<table class="table"
+												th:if="${not #lists.isEmpty(userPaymentList)}">
 												<thead>
 													<tr>
 														<th>Default</th>
@@ -184,7 +194,7 @@
 												</tbody>
 											</table>
 
-											<button class="btn btn-primary" type="submit">Save</button>
+											<button th:if="${#lists.isEmpty(userPaymentList)}" class="btn btn-primary" type="submit">Save</button>
 										</form>
 									</div>
 									<div th:if="${addNewCreditCard}">
@@ -222,8 +232,8 @@
 													placeholder="Street Address 1..."
 													th:name="userBillingStreet"
 													th:value="${userBilling.userBillingStreet}"
-													required="required" /> <br />
-												<input type="text" class="form-control" id="billingAddress"
+													required="required" /> <br /> <input type="text"
+													class="form-control" 
 													placeholder="Street Address 2..."
 													th:name="userBillingStreet2"
 													th:value="${userBilling.userBillingStreet2}" />
@@ -387,20 +397,28 @@
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
 									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
-									<ol class="breadcrumb" style="background-color: #ffffff; padding-left:7px;">
+									<ol class="breadcrumb"
+										style="background-color: #ffffff; padding-left: 7px;">
 										<li class="breadcrumb-item active"><a
 											th:href="@{/listOfShippingAddresses}"
-											th:style="${listOfShippingAddresses}? 'color: red'">List of
-												Shipping Addresses</a></li>
+											th:style="${listOfShippingAddresses}? 'color: red'">List
+												of Shipping Addresses</a></li>
 
 										<li class="breadcrumb-item active"><a
 											th:href="@{/addNewShippingAddress}"
-											th:style="${addNewShippingAddress}? 'color: red'">Add New Shipping Address</a></li>
+											th:style="${addNewShippingAddress}? 'color: red'">Add New
+												Shipping Address</a></li>
 									</ol>
+									
+									<div th:if="${#lists.isEmpty(userShippingList)}"
+										class="alert alert-info">
+										<p>You currently do not have any saved shipping
+											information.</p>
+									</div>
 
 									<div th:if="${listOfShippingAddresses}">
 										<form th:action="@{/setDefaultShippingAddress}" method="post">
-											<table class="table">
+											<table class="table" th:if="${not #lists.isEmpty(userShippingList)}">
 												<thead>
 													<tr>
 														<th>Default</th>
@@ -411,11 +429,13 @@
 
 												<tbody>
 													<tr th:each="userShipping: ${userShippingList}">
-														<td><input type="radio" name="defaultShippingAddressId"
+														<td><input type="radio"
+															name="defaultShippingAddressId"
 															th:value="${userShipping.id}"
 															th:checked="${userShipping.userShippingDefault}" /></td>
 
-														<td th:text="${userShipping.userShippingStreet} + ', ' 
+														<td
+															th:text="${userShipping.userShippingStreet} + ', ' 
 														+ ${userShipping.userShippingCity} + ', ' + ${userShipping.userShippingState}"></td>
 														<td><a
 															th:href="@{/updateUserShipping?id=} + ${userShipping.id}"><i
@@ -429,25 +449,28 @@
 											<button class="btn btn-primary" type="submit">Save</button>
 										</form>
 									</div>
-									
+
 									<div th:if="${addNewShippingAddress}">
 										<form th:action="@{/addNewShippingAddress}" method="post">
 											<div class="bg-info" th:if="${updateUserShippingInfo}">
 												<p>User information updated.</p>
 											</div>
 
-											<input hidden="hidden" name="id" th:value="${userShipping.id}" />
+											<input hidden="hidden" name="id"
+												th:value="${userShipping.id}" />
 
 											<!--  Shipping Address -->
 											<hr />
 											<div class="form-group">
-												<h3><strong>Shipping Address</strong></h3>
+												<h3>
+													<strong>Shipping Address</strong>
+												</h3>
 											</div>
-											<br/>
+											<br />
 
 											<div class="form-group">
-												<label for="shippingName">Receiver Name</label> <input type="text"
-													class="form-control" id="shippingName"
+												<label for="shippingName">Receiver Name</label> <input
+													type="text" class="form-control" id="shippingName"
 													placeholder="Receiver Name..." th:name="userShippingName"
 													th:value="${userShipping.userShippingName}"
 													required="required" />
@@ -459,9 +482,8 @@
 													placeholder="Street Address 1..."
 													th:name="userShippingStreet"
 													th:value="${userShipping.userShippingStreet}"
-													required="required" /> <br />
-												<input type="text" class="form-control"
-													placeholder="Street Address 2..."
+													required="required" /> <br /> <input type="text"
+													class="form-control" placeholder="Street Address 2..."
 													th:name="userShippingStreet2"
 													th:value="${userShipping.userShippingStreet2}" />
 											</div>
@@ -506,13 +528,13 @@
 												</div>
 											</div>
 
-								
-									
+
+
 											<button type="submit" class="btn btn-primary btn-lg">Save
 												All</button>
 										</form>
 									</div>
-									
+
 								</div>
 							</div>
 						</div>
