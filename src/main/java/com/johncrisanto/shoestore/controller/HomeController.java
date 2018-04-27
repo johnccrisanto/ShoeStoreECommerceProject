@@ -36,6 +36,7 @@ import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 import com.johncrisanto.shoestore.entity.security.Role;
 import com.johncrisanto.shoestore.entity.security.UserRole;
 import com.johncrisanto.shoestore.service.ShoeService;
+import com.johncrisanto.shoestore.service.UserPaymentService;
 import com.johncrisanto.shoestore.service.UserService;
 import com.johncrisanto.shoestore.service.impl.UserSecurityService;
 import com.johncrisanto.shoestore.utility.MailConstructor;
@@ -59,6 +60,9 @@ public class HomeController {
 
 	@Autowired
 	private ShoeService shoeService;
+	
+	@Autowired
+	private UserPaymentService userPaymentService;
 
 	@RequestMapping("/")
 	public String HomePage() {
@@ -250,6 +254,41 @@ public class HomeController {
 		model.addAttribute("userShippingList", user.getUserShippingList());
 		// model.addAttribute("orderList", user.getOrderList());
 		return "myProfile";
+	}
+	
+	@RequestMapping("/updateCreditCard")
+	public String updateCreditCard(@RequestParam("id") Long creditCardId, 
+			Principal principal, Model model) {
+		
+		User user = userService.findByUsername(principal.getName());
+		UserPayment userPayment = userPaymentService.findById(creditCardId);
+		
+		if(user.getId() != userPayment.getUser().getId()) {
+			return "badRequestPage";
+		} else {
+			model.addAttribute("user", user);
+			UserBilling userBilling = userPayment.getUserBilling();
+			model.addAttribute("userPayment", userPayment);
+			model.addAttribute("userBilling", userBilling);
+			
+			List<String> stateList = USConstants.listOfUsStatesCode;
+			Collections.sort(stateList);
+			model.addAttribute("stateList", stateList);	
+			
+			model.addAttribute("addNewCreditCard", true);
+			model.addAttribute("classActiveBilling", true);
+			model.addAttribute("listOfShippingAddresses", true);
+			
+			model.addAttribute("userPaymentList", user.getUserPaymentList());
+			model.addAttribute("userShippingList", user.getUserShippingList());
+		
+			return "myProfile";
+			
+			
+		}
+		
+		
+		
 	}
 
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
