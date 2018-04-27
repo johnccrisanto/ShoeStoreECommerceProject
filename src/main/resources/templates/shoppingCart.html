@@ -18,7 +18,7 @@
 
 		</div>
 		<br />
-		
+
 		<div class="row" style="margin-top: 10px;">
 			<div class="col-xs-12">
 				<div class="row">
@@ -32,16 +32,19 @@
 					</div>
 					<br />
 					<div th:if="${notEnoughStock}" class="alert alert-warning">
-						Oops, some of the products don't have enough stock. Please update
-						product quantity.</div>
-					<div th:if="${emptyCart}" class="alert alert-warning">Oops,
-						your cart is empty. See if you can find what you like in the
-						shoe rack and add them to your cart.</div>
-						
-						<br/><br/>
+						<p>Oops, some of the products don't have enough stock. Please
+							update product quantity.</p>
+					</div>
+					<div th:if="${emptyCart}" class="alert alert-warning">
+
+						<p>Oops, your cart is empty. See if you can find what you like
+							in the shoe rack and add them to your cart.</p>
+					</div>
+
+					<br /> <br />
 					<div class="row">
 						<div class="col-xs-8">
-							<h4>Products</h4>
+							<h4 style="margin-left: 70px;">Products</h4>
 						</div>
 						<div class="col-xs-2">
 							<h4>Price</h4>
@@ -57,20 +60,29 @@
 							<hr />
 							<div class="col-xs-2">
 								<a th:href="@{shoeDetails(id=${cartItem.shoe.id})}"> <img
-									class="img-responsive"
+									class="img-responsive center-block"
 									th:src="#{adminPath} + @{/images/shoe/} +
-								${cartItem.shoe.id} + '.png'" />
+								${cartItem.shoe.id} + '.png'"
+									style="max-width: 90px;" />
 								</a>
-								<p th:if="${cartItem.shoe.inStockNumber&gt;10}"
-									style="color: green;">In Stock</p>
-								<p
-									th:if="${cartItem.shoe.inStockNumber&lt;10 and cartItem.shoe.inStockNumber&gt;0}"
-									style="color: green;">
-									Only <span th:text="${cartItem.shoe.inStockNumber}"></span>In
-									Stock
-								</p>
-								<p th:if="${cartItem.shoe.inStockNumber == 0}"
-									style="color: darkred;">Product Unavailable</p>
+							</div>
+							<div class="col-xs-6">
+								<div style="margin-left: 50px;">
+									<a th:href="@{/shoeDetails?id=} + ${cartItem.shoe.id}"><h4
+											th:text="${cartItem.shoe.name}"></h4></a>
+									<p th:if="${cartItem.shoe.inStockNumber&gt;10}"
+										style="color: green;">In Stock</p>
+									<p
+										th:if="${cartItem.shoe.inStockNumber&lt;10 and cartItem.shoe.inStockNumber&gt;0}"
+										style="color: green;">
+										Only <span th:text="${cartItem.shoe.inStockNumber}"></span> In
+										Stock
+									</p>
+									<p th:if="${cartItem.shoe.inStockNumber == 0}"
+										style="color: darkred;">Product Unavailable</p>
+
+									<a th:href="@{/shoppingCart/removeItem?id=} + ${cartItem.id}">Delete</a>
+								</div>
 							</div>
 
 							<div class="col-xs-2">
@@ -84,7 +96,7 @@
 								<input hidden="hidden" name="id" th:value="${cartItem.id}" /> <input
 									th:id="${cartItem.id}" th:name="qty"
 									th:disabled="${cartItem.shoe.inStockNumber == 0}"
-									class="form-control cartItemQty" th:value="${cartItem.qty}" />
+									class="form-control cartItemQty" th:value="${cartItem.qty}" /> <br/>
 								<button style="display: none;"
 									th:id="'update-item-'+${cartItem.id}" type="submit"
 									class="btn btn-warning btn-xs">Update</button>
@@ -97,14 +109,14 @@
 						<h4 class="col-xs-12 text-right">
 							<strong style="font-size: large;">Total Price (<span
 								th:text="${#lists.size(cartItemList)}"></span> items):
-							</strong> <span style="color: #db3208; font-szie: large;">$<span
+							</strong> <span style="color: #db3208; font-size: large;">$<span
 								th:text="${shoppingCart.grandTotal}"></span></span>
 						</h4>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 
 
 	</div>

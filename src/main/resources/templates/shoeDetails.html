@@ -28,20 +28,38 @@
 
 		</div>
 		<br />
-		<p><a th:href="@{/shoeRack}"> &lt; Back to the List of Shoes</a></p>
-		<br/>
+		<p>
+			<a th:href="@{/shoeRack}"> &lt; Back to the List of Shoes</a>
+		</p>
+		<br />
 		<form th:action="@{/shoppingCart/addItem}" method="post">
 			<div class="row">
 				<div class="col-xs-3">
-				 <img
-						class="img-responsive"
+					<img class="img-responsive"
 						th:src="#{adminPath}+@{/images/shoe/}+${shoe.id}+'.png'" />
 				</div>
 
 				<div class="col-xs-9">
-					
+
 					<div class="row">
 						<div class="col-xs-5">
+							<h3>
+								<span th:if="${addShoeSuccess}" style="color: forestgreen"><i
+									class="fa fa-check" aria-hidden="true"
+									style="color: forestgreen"></i>Added to cart.</span>
+							</h3>
+							
+							
+							<h3>
+								<span th:if="${notEnoughStock}" style="color: red">Oops,
+									only <span th:text="${shoe.inStockNumber}"></span> are currently in stock. Please select a lower quantity.
+								</span>
+							</h3>
+
+
+
+
+
 							<h3 th:text="${shoe.name}" style="margin-top: 0;"></h3>
 							<p>
 								<strong>Brand: </strong><span th:text="${shoe.brand}"></span>
@@ -108,7 +126,7 @@
 					</div>
 
 				</div>
-				<input hidden="hidden" name="id" th:value="${shoe.id}" />
+				<input hidden="hidden" name="id" th:field="*{shoe.id}" />
 			</div>
 			<hr />
 			<p th:utext="${shoe.description}"></p>
