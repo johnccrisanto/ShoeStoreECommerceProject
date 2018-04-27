@@ -57,7 +57,7 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
 									<form action="@{/updateUserInfo}" method="post">
 
 										<input type="hidden" name="id" th:value="${user.id}" />
@@ -134,7 +134,7 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;"></div>
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;"></div>
 							</div>
 						</div>
 					</div>
@@ -145,8 +145,8 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
-									<ol class="breadcrumb">
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
+									<ol class="breadcrumb" style="background-color: #ffffff; padding-left:7px;">
 										<li class="breadcrumb-item active"><a
 											th:href="@{/listOfCreditCards}"
 											th:style="${listOfCreditCards}? 'color: red'">List of
@@ -386,8 +386,8 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
-									<ol class="breadcrumb">
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
+									<ol class="breadcrumb" style="background-color: #ffffff; padding-left:7px;">
 										<li class="breadcrumb-item active"><a
 											th:href="@{/listOfShippingAddresses}"
 											th:style="${listOfShippingAddresses}? 'color: red'">List of

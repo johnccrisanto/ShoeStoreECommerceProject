@@ -38,7 +38,7 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
 									<div th:if="${param.error != null}" class="alert alert-danger">
 										<p>The username and password you provided did not match.</p>
 									</div>
@@ -64,7 +64,7 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
 									<div class="alert alert-success" th:if="${emailSent}">
 										<p>An email has been sent to the email address you have
 											provided. Please validate your account by clicking on the
@@ -118,7 +118,7 @@
 						<div class="panel-group">
 							<div class="panel panel-default" style="border: none;">
 								<div class="panel-body"
-									style="background-color: #ededed; margin-top: 20px;">
+									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
 
 									<div th:if="${emailNotExists}" class="alert alert-danger">
 										<p>The email address you provided does not exist. Please
