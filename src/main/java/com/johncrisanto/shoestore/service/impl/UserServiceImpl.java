@@ -18,6 +18,7 @@ import com.johncrisanto.shoestore.repository.PasswordResetTokenRepository;
 import com.johncrisanto.shoestore.repository.RoleRepository;
 import com.johncrisanto.shoestore.repository.UserPaymentRepository;
 import com.johncrisanto.shoestore.repository.UserRepository;
+import com.johncrisanto.shoestore.repository.UserShippingRepository;
 import com.johncrisanto.shoestore.service.UserService;
 
 @Service
@@ -36,6 +37,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserPaymentRepository userPaymentRepository;
+	
+	@Autowired
+	private UserShippingRepository userShippingRepository;
 	
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
@@ -119,11 +123,19 @@ public class UserServiceImpl implements UserService {
 		save(user);
 	
 	}
-	
-	
-	
-	
-	
-	
+
+	@Override
+	public void setUserDefaultShipping(Long userShippingId, User user) {
+		List<UserShipping> userShippingList = (List<UserShipping>) userShippingRepository.findAll();
+		for(UserShipping userShipping: userShippingList) {
+			if(userShipping.getId() == userShippingId) {
+				userShipping.setUserShippingDefault(true);
+			} else {
+				userShipping.setUserShippingDefault(false);
+			}
+			
+			userShippingRepository.save(userShipping);
+		}
+	}
 
 }
