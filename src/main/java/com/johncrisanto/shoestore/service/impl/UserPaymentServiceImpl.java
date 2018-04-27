@@ -17,7 +17,11 @@ public class UserPaymentServiceImpl implements UserPaymentService {
 	public UserPayment findById(Long creditCardId) {
 		return userPaymentRepository.findById(creditCardId).orElse(null);
 	}
-	
-	
 
+	@Override
+	public void removeById(Long creditCardId) {
+		userPaymentRepository.deleteById(creditCardId);	
+	}
+
+	
 }

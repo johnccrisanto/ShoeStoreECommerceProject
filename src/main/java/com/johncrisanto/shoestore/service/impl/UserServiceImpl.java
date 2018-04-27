@@ -1,5 +1,6 @@
 package com.johncrisanto.shoestore.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import com.johncrisanto.shoestore.entity.security.PasswordResetToken;
 import com.johncrisanto.shoestore.entity.security.UserRole;
 import com.johncrisanto.shoestore.repository.PasswordResetTokenRepository;
 import com.johncrisanto.shoestore.repository.RoleRepository;
+import com.johncrisanto.shoestore.repository.UserPaymentRepository;
 import com.johncrisanto.shoestore.repository.UserRepository;
 import com.johncrisanto.shoestore.service.UserService;
 
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private UserPaymentRepository userPaymentRepository;
 	
 	@Override
 	public PasswordResetToken getPasswordResetToken(final String token) {
@@ -89,6 +94,23 @@ public class UserServiceImpl implements UserService {
 		save(user);
 		
 	}
+
+	@Override
+	public void setUserDefaultPayment(Long userPaymentId, User user) {
+		List<UserPayment> userPaymentList = (List<UserPayment>) userPaymentRepository.findAll();
+		for(UserPayment userPayment: userPaymentList) {
+			if(userPayment.getId() == userPaymentId) {
+				userPayment.setDefaultPayment(true);
+			} else {
+				userPayment.setDefaultPayment(false);
+			}
+			
+			userPaymentRepository.save(userPayment);
+		}
+		
+	}
+	
+	
 	
 	
 
