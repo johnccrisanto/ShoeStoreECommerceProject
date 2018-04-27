@@ -1,5 +1,6 @@
 package com.johncrisanto.shoestore.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -7,7 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.johncrisanto.shoestore.entity.ShoppingCart;
 import com.johncrisanto.shoestore.entity.User;
 import com.johncrisanto.shoestore.entity.UserBilling;
 import com.johncrisanto.shoestore.entity.UserPayment;
@@ -65,6 +68,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User createUser(User user, Set<UserRole> userRoleSet) throws Exception {
 		User localUser = userRepository.findByUsername(user.getUsername());
 		
@@ -77,6 +81,13 @@ public class UserServiceImpl implements UserService {
 			
 			user.getUserRoleSet().addAll(userRoleSet);
 			
+			ShoppingCart shoppingCart = new ShoppingCart();
+			
+			shoppingCart.setUser(user);
+			user.setShoppingCart(shoppingCart);
+			
+			user.setUserShippingList(new ArrayList<UserShipping>());
+			user.setUserPaymentList(new ArrayList<UserPayment>());;
 			localUser = userRepository.save(user);
 		}
 		
