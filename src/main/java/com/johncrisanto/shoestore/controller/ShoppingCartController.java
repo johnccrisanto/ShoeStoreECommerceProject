@@ -51,7 +51,7 @@ public class ShoppingCartController {
 	}
 	
 	@RequestMapping("/addItem")
-	public String addItem(@ModelAttribute("shoe") Shoe shoe, @ModelAttribute("qty") String qty,
+	public String addItem(@ModelAttribute("shoe") Shoe shoe, @ModelAttribute("qty") String qty, 
 			Model model, Principal principal) {
 		User user = userService.findByUsername(principal.getName());
 		shoe = shoeService.findById(shoe.getId());

@@ -194,7 +194,7 @@
 												</tbody>
 											</table>
 
-											<button th:if="${#lists.isEmpty(userPaymentList)}" class="btn btn-primary" type="submit">Save</button>
+											<button th:if="${not #lists.isEmpty(userPaymentList)}" class="btn btn-primary" type="submit">Save</button>
 										</form>
 									</div>
 									<div th:if="${addNewCreditCard}">
@@ -446,7 +446,7 @@
 												</tbody>
 											</table>
 
-											<button class="btn btn-primary" type="submit">Save</button>
+											<button th:if="${not #lists.isEmpty(userShippingList)}" class="btn btn-primary" type="submit">Save</button>
 										</form>
 									</div>
 
