@@ -32,7 +32,7 @@ public class ShoestoreApplication implements CommandLineRunner {
 		user1.setLastName("Crisanto");
 		user1.setUsername("jcrisanto");
 		user1.setPassword(SecurityUtility.passwordEncoder().encode("password"));
-		user1.setEmail("jcrisanto@gmail.com");
+		user1.setEmail("jcrisanto87@gmail.com");
 		Set<UserRole> userRoleSet = new HashSet<>();
 		Role role1 = new Role();
 		role1.setRoleId(1);

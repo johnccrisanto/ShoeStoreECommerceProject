@@ -10,7 +10,7 @@ import com.johncrisanto.shoestore.service.ShippingAddressService;
 public class ShippingAddressServiceImpl implements ShippingAddressService {
 	public ShippingAddress setByUserShipping(UserShipping userShipping, ShippingAddress shippingAddress) {
 		shippingAddress.setShippingAddressName(userShipping.getUserShippingName());
-		shippingAddress.setShippingAddressStreet1(userShipping.getUserShippingStreet());
+		shippingAddress.setShippingAddressStreet(userShipping.getUserShippingStreet());
 		shippingAddress.setShippingAddressStreet2(userShipping.getUserShippingStreet2());
 		shippingAddress.setShippingAddressCity(userShipping.getUserShippingCity());
 		shippingAddress.setShippingAddressState(userShipping.getUserShippingState());
