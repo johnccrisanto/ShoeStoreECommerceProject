@@ -5,4 +5,16 @@ $(document).ready(function() {
 		$('#update-item-' + id).css('display', 'inline-block');
 	});
 	
+	$("#theSameAsShippingAddress").on('click', checkBillingAddress);
+	
+	
+	
 });
+
+function checkBillingAddress() {
+	if($("#theSameAsShippingAddress").is(":checked")) {
+		$(".billingAddress").prop("disabled", true);
+	} else {
+		$(".billingAddress").prop("disabled", false);
+	}
+}

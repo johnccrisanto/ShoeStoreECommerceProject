@@ -15,7 +15,7 @@ public class BillingAddress {
 	private String billingAddressName;
 	private String billingAddressStreet;
 	private String billingAddressStreet2;
-	private String bllingAddressCity;
+	private String billingAddressCity;
 	private String billingAddressState;
 	private String billingAddressCountry;
 	private String billingAddressZipCode;
@@ -55,12 +55,12 @@ public class BillingAddress {
 		this.billingAddressStreet2 = billingAddressStreet2;
 	}
 
-	public String getBllingAddressCity() {
-		return bllingAddressCity;
+	public String getBillingAddressCity() {
+		return billingAddressCity;
 	}
 
-	public void setBllingAddressCity(String bllingAddressCity) {
-		this.bllingAddressCity = bllingAddressCity;
+	public void setBillingAddressCity(String bllingAddressCity) {
+		this.billingAddressCity = bllingAddressCity;
 	}
 
 	public String getBillingAddressState() {

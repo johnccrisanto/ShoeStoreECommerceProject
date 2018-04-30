@@ -40,7 +40,7 @@ public class ShippingAddress {
 		this.shippingAddressName = shippingAddressName;
 	}
 
-	public String getShippingAddressStreet1() {
+	public String getShippingAddressStreet() {
 		return shippingAddressStreet;
 	}
 
@@ -80,12 +80,12 @@ public class ShippingAddress {
 		this.shippingAddressCountry = shippingAddressCountry;
 	}
 
-	public String getShippingAddressZipcode() {
+	public String getShippingAddressZipCode() {
 		return shippingAddressZipCode;
 	}
 
-	public void setShippingAddressZipcode(String shippingAddressZipcode) {
-		this.shippingAddressZipCode = shippingAddressZipcode;
+	public void setShippingAddressZipCode(String shippingAddressZipCode) {
+		this.shippingAddressZipCode = shippingAddressZipCode;
 	}
 
 	public User getUser() {
