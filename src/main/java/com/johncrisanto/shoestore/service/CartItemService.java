@@ -3,6 +3,7 @@ package com.johncrisanto.shoestore.service;
 import java.util.List;
 
 import com.johncrisanto.shoestore.entity.CartItem;
+import com.johncrisanto.shoestore.entity.Order;
 import com.johncrisanto.shoestore.entity.Shoe;
 import com.johncrisanto.shoestore.entity.ShoppingCart;
 import com.johncrisanto.shoestore.entity.User;
@@ -19,4 +20,6 @@ public interface CartItemService {
 	void removeCartItem(CartItem cartItem);
 
 	CartItem save(CartItem cartItem);
+
+	List<CartItem> findByOrder(Order order);
 }

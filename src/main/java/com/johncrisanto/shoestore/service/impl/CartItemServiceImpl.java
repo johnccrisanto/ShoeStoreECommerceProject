@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.johncrisanto.shoestore.entity.CartItem;
+import com.johncrisanto.shoestore.entity.Order;
 import com.johncrisanto.shoestore.entity.Shoe;
 import com.johncrisanto.shoestore.entity.ShoeToCartItem;
 import com.johncrisanto.shoestore.entity.ShoppingCart;
@@ -88,6 +89,12 @@ public class CartItemServiceImpl implements CartItemService{
 		return cartItemRepository.save(cartItem);
 		
 	}
+
+	@Override
+	public List<CartItem> findByOrder(Order order) {
+		return (List<CartItem>) cartItemRepository.findByOrder(order);
+	}
+	
 	
 	
 
