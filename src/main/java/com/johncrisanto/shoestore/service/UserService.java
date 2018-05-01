@@ -29,4 +29,6 @@ public interface UserService {
 	void updateUserShipping(UserShipping userShipping, User user);
 
 	void setUserDefaultShipping(Long userShippingId, User user);
+
+	User findById(Long id);
 }
