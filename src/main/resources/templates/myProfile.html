@@ -147,7 +147,12 @@
 								<div class="panel-body"
 									style="margin-top: 20px; border: 1px solid #ededed; border-radius: 10px;">
 									
-									<table class="table table-sm table-inverse">
+									<div th:if="${#lists.isEmpty(orderList)}"
+										class="alert alert-info">
+										<p>You currently do not have any placed orders.</p>
+									</div>
+									
+									<table class="table table-sm table-inverse" th:if="${not #lists.isEmpty(orderList)}">
 										<thead>
 											<tr>
 												<th>Order Date</th>
@@ -470,13 +475,11 @@
 
 													<div class="form-group">
 														<label for="cardType">Select Card Type: </label> <select
-															class="form-control" id="cardType" th:name="cardType"
-															th:value="${userPayment.cardType}">
-															<option value="Visa">Visa</option>
-															<option value="Master Card">Master Card</option>
-															<option value="Discover">Discover</option>
-															<option value="American Express">American
-																Express</option>
+															class="form-control" id="cardType" th:name="cardType">
+															<option th:each="cardType : ${creditCardTypeList}" th:text="${cardType}" th:value="${cardType}"
+															th:selected="${userPayment.cardType == cardType}">
+															
+															</option>
 														</select>
 													</div>
 
@@ -513,18 +516,9 @@
 																	required="required"
 																	th:value="${userPayment.expiryMonth}">
 																	<option disabled="disabled">-- Month --</option>
-																	<option value="01">Jan (01)</option>
-																	<option value="02">Feb (02)</option>
-																	<option value="03">Mar (03)</option>
-																	<option value="04">Apr (04)</option>
-																	<option value="05">May (05)</option>
-																	<option value="06">Jun (06)</option>
-																	<option value="07">Jul (07)</option>
-																	<option value="08">Aug (08)</option>
-																	<option value="09">Sep (09)</option>
-																	<option value="10">Oct (10)</option>
-																	<option value="11">Nov (11)</option>
-																	<option value="12">Dec (12)</option>
+																	<option th:each="month : ${monthList}" th:value="${month}"
+																	th:text="${month}" th:selected="${userPayment.expiryMonth == month}"></option>
+															
 																</select>
 															</div>
 
@@ -532,14 +526,8 @@
 																<select class="form-control" name="expiryYear"
 																	th:value="${userPayment.expiryYear}">
 																	<option disabled="disabled">-- Year --</option>
-																	<option value="2018">2018</option>
-																	<option value="2019">2019</option>
-																	<option value="2020">2020</option>
-																	<option value="2021">2021</option>
-																	<option value="2022">2022</option>
-																	<option value="2023">2023</option>
-																	<option value="2024">2024</option>
-																	<option value="2025">2025</option>
+																	<option th:each="year : ${yearList}" th:value="${year}"
+																	th:text="${year}" th:selected="${userPayment.expiryYear == year}"></option>
 																</select>
 															</div>
 														</div>

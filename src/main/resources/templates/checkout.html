@@ -194,12 +194,11 @@
 											<img th:src="@{/images/creditcard.png}" class="img-responsive" /><br />
 											<div class="form-group">
 												<label for="cardType">Select Card Type *: </label> <select
-													class="form-control" id="cardType" name="cardType"
-													th:value="${payment.cardType}">
-													<option value="Visa">Visa</option>
-													<option value="Master Card">Mastercard</option>
-													<option value="Discover">Discover</option>
-													<option value="American Express">American Express</option>
+													class="form-control" id="cardType" name="cardType">
+													<option th:each="cardType : ${list}" th:text="${cardType}" th:value="${cardType}"
+															th:selected="${payment.cardType == cardType}">
+															
+													</option>
 												</select>
 											</div>
 
@@ -231,32 +230,20 @@
 														<select class="form-control" name="expiryMonth"
 															required="required" th:value="${payment.expiryMonth}">
 															<option disabled="disabled">-- Month --</option>
-															<option value="01">Jan (01)</option>
-															<option value="02">Feb (02)</option>
-															<option value="03">Mar (03)</option>
-															<option value="04">Apr (04)</option>
-															<option value="05">May (05)</option>
-															<option value="06">June (06)</option>
-															<option value="07">July (07)</option>
-															<option value="08">Aug (08)</option>
-															<option value="09">Sep (09)</option>
-															<option value="10">Oct (10)</option>
-															<option value="11">Nov (11)</option>
-															<option value="12">Dec (12)</option>
+														<option th:each="month : ${monthList}" th:text="${month}" th:value="${month}"
+															th:selected="${payment.expiryMonth == month}">
+															
+													</option>
 														</select>
 													</div>
 													<div class="col-xs-6">
 														<select class="form-control" name="expiryYear"
 															th:value="${payment.expiryYear}">
 															<option disabled="disabled">-- Year --</option>
-															<option value="2018">2018</option>
-															<option value="2019">2019</option>
-															<option value="2020">2020</option>
-															<option value="2021">2021</option>
-															<option value="2022">2022</option>
-															<option value="2023">2023</option>
-															<option value="2024">2024</option>
-															<option value="2025">2025</option>
+															<option th:each="year : ${yearList}" th:text="${year}" th:value="${year}"
+															th:selected="${payment.expiryYear == year}">
+															
+													</option>
 														</select>
 													</div>
 												</div>

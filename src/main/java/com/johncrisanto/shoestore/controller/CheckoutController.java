@@ -2,6 +2,7 @@ package com.johncrisanto.shoestore.controller;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -206,11 +207,7 @@ public class CheckoutController {
 		model.addAttribute("estimatedDeliveryDate", estimatedDeliveryDate);
 		
 		return "orderSubmittedPage";
-		
-		
-		
-		
-				
+			
 	}
 
 	@RequestMapping("/setShippingAddress")
@@ -285,6 +282,42 @@ public class CheckoutController {
 			Collections.sort(stateList);
 			
 			model.addAttribute("stateList", stateList);
+			
+			List<String> creditCardTypeList = new ArrayList<>();
+			creditCardTypeList.add("Visa");
+			creditCardTypeList.add("Mastercard");
+			creditCardTypeList.add("Discover");
+			creditCardTypeList.add("American Express");
+			
+			model.addAttribute("list", creditCardTypeList);
+			
+			List<Integer> monthList = new ArrayList<>();
+			monthList.add(1);
+			monthList.add(2);
+			monthList.add(3);
+			monthList.add(4);
+			monthList.add(5);
+			monthList.add(6);
+			monthList.add(7);
+			monthList.add(8);
+			monthList.add(9);
+			monthList.add(10);
+			monthList.add(11);
+			monthList.add(12);
+			
+			model.addAttribute("monthList", monthList);
+
+			List<Integer> yearList = new ArrayList<>();
+			yearList.add(2018);
+			yearList.add(2019);
+			yearList.add(2020);
+			yearList.add(2021);
+			yearList.add(2022);
+			yearList.add(2023);
+			yearList.add(2024);
+			yearList.add(2025);
+			
+			model.addAttribute("yearList", yearList);
 			
 			List<UserShipping> userShippingList = user.getUserShippingList();
 			List<UserPayment> userPaymentList = user.getUserPaymentList();
