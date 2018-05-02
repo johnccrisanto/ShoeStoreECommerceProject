@@ -19,7 +19,8 @@
 		<br />
 
 		<div class="row">
-			<div class="col-xs-8 col-xs-offset-2">
+
+			<div class="col-xs-9">
 				<div th:if="${emptyList}">
 					<h5 style="font-style: italic;">Oops, no result found.</h5>
 				</div>
@@ -71,10 +72,34 @@
 
 
 			</div>
+			
+				<div class="col-xs-3" style="margin-top: 50px;">
+				<h3>
+					<label for="category">Category</label>
+				</h3>
+				<div class="list-group" id="category">
+					<a th:href="@{/shoeRack(category='all')}"
+						th:classappend="${activeAll}? 'active'" class="list-group-item">All</a>
+					<a th:href="@{/searchByCategory(category='Basketball')}"
+						th:classappend="${activeBasketball}? 'active'"
+						class="list-group-item">Basketball</a> <a
+						th:href="@{/searchByCategory(category='Running')}"
+						th:classappend="${activeRunning}? 'active'"
+						class="list-group-item">Running</a> <a
+						th:href="@{/searchByCategory(category='Tennis')}"
+						th:classappend="${activeTennis}? 'active'"
+						class="list-group-item">Tennis</a> <a
+						th:href="@{/listNewArrivals}"
+						th:classappend="${activeNewArrival}? 'active'"
+						class="list-group-item">New Arrivals</a> 
+				</div>
+			</div>
 		</div>
 
 	</div>
 	<!--  End of container -->
+
+	<div th:replace="common/header :: footer" /></div>
 
 	<div th:replace="common/header :: body-bottom-scripts"></div>
 

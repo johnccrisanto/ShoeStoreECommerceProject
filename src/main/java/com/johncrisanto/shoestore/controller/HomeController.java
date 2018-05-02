@@ -97,9 +97,17 @@ public class HomeController {
 	}
 
 	@RequestMapping("/shoeRack")
-	public String shoeRack(Model model) {
+	public String shoeRack(Model model, Principal principal) {
+		
+		if (principal != null) {
+			String username = principal.getName();
+			User user = userService.findByUsername(username);
+			model.addAttribute("user", user);
+		}
+
 		List<Shoe> shoeList = shoeService.findAll();
 		model.addAttribute("shoeList", shoeList);
+		model.addAttribute("activeAll", true);
 		return "shoeRack";
 	}
 

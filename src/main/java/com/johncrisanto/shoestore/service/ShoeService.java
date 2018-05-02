@@ -8,4 +8,10 @@ public interface ShoeService {
 	List<Shoe> findAll();
 
 	Shoe findById(Long id);
+
+	List<Shoe> findByCategory(String category);
+
+	List<Shoe> findByNewArrivalTrue();
+
+	List<Shoe> blurrySearch(String keyword);
 }

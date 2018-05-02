@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+	<div th:replace="common/header :: navbar" /></div>
+
+	<div class="container">
+		<div class="row" style="background-color: #013668; color: #ffffff; border-radius: 10px;">
+			<h1 style="text-align: center;">Account Page</h1>
+		</div>
+		<br />
+
+
+		<div class="row" style="margin-top:10px">
+			<div class="col-xs-9 col-xs-offset-3">
+				<h5>Bad request. The request path is invalid. Click <a th:href="@{/}">here</a> to return to the home page.</h5>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+<div th:replace="common/header :: footer"/></div>
+
+	<div th:replace="common/header :: body-bottom-scripts" /></div>
+</body>
+</html>

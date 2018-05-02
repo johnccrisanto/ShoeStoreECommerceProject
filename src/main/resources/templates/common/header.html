@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:fragment="common-header">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,7 +28,8 @@
 <!--  Font Awesome -->
 <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
 
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato"
+	rel="stylesheet">
 
 </head>
 
@@ -45,13 +47,13 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a th:href="@{/}"><img src="/images/johns-shoes-logo.png" width="70"
-						height="50"></a>
+					<a th:href="@{/}"><img src="/images/johns-shoes-logo.png"
+						width="70" height="50"></a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-left">
 						<li>
-							<form class="navbar-form">
+							<form class="navbar-form" th:action="@{/searchShoe}" method="post">
 								<div class="form-group">
 									<input type="text" name="keyword" class="form-control"
 										placeholder="Shoe you're looking for..."> <input
@@ -66,20 +68,26 @@
 							aria-expanded="false">Store<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li role="separator" class="divider"></li>
-								<li class="dropdown-header"><h4><u>Our Store</u></h4></li>
+								<li class="dropdown-header"><h4>
+										<u>Our Store</u>
+									</h4></li>
 								<li><a th:href="@{/}">Home Page</a></li>
-								<li><a href="#">Basketball</a></li>
-								<li><a href="#">Tennis</a></li>
-								<li><a href="#">Running</a></li>
+								<li><a th:href="@{/searchByCategory(category='Basketball')}">Basketball</a></li>
+								<li><a th:href="@{/searchByCategory(category='Running')}">Running</a></li>
+								<li><a th:href="@{/searchByCategory(category='Tennis')}">Tennis</a></li>
 								<li><a th:href="@{/shoeRack}">List of Shoes</a></li>
 								<li role="separator" class="divider"></li>
-								<li class="dropdown-header"><h4><u>Other</u></h4></li>
+								<li class="dropdown-header"><h4>
+										<u>Other</u>
+									</h4></li>
 								<li><a href="#">Our Store Location</a></li>
 								<li><a href="#">Frequently Asked Questions</a></li>
 							</ul></li>
 						<li><a th:href="@{/shoppingCart/cart}">Shopping Cart</a></li>
-						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My Account</a></li>
-						<li><a sec:authorize="isAuthenticated()" th:href="@{/myProfile}">My Account</a></li>
+						<li><a sec:authorize="isAnonymous()" th:href="@{/login}">My
+								Account</a></li>
+						<li><a sec:authorize="isAuthenticated()"
+							th:href="@{/myProfile}">My Account</a></li>
 						<li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
 					</ul>
 				</div>
@@ -88,6 +96,77 @@
 			<!--/.container-fluid -->
 		</nav>
 	</div>
+
+	<div th:fragment="footer">
+		<br /> <br />
+		<footer>
+			<div class="row">
+				<div class="col-xs-3 footerleft">
+					<div class="logofooter">
+
+						<a th:href="@{/}"><img class="img-responsive"
+							th:src="@{/images/johns-shoes-logo.png}"
+							style="max-width: 200px;" /></a>
+
+					</div>
+
+					<p>
+						John's Shoes. <br /> Serving our customers with the best.
+					</p>
+				</div>
+
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">CONTACT</h6>
+					<ul class="post">
+						<p>
+							<i class="fa fa-map-pin"></i> 123 XXX Ave<br /> Boston MA, USA
+							02112
+						</p>
+						<p>
+							<i class="fa fa-phone"></i> Phone (USA) : +1 999 999 9999
+						</p>
+						<p>
+							<i class="fa fa-envelope"></i> E-mail : info@lebookstore.com
+						</p>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">LINKS</h6>
+					<ul class="footer-ul">
+						<li><a href="#"> Privacy Policy</a></li>
+						<li><a href="#"> Terms &#38; Conditions</a></li>
+						<li><a href="#"> Frequently Ask Questions</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-3 paddingtop-bottom">
+					<h6 class="heading7">STORE HOURS</h6>
+					<div class="post">
+						<p>Monday - Saturday: 9am - 11pm</p>
+						<p>Sunday: 10am - 10pm</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		
+		<div class="copyright">
+			<div class="col-md-6">
+				<p>© 2018 - All Rights Reserved</p>
+			</div>
+			<div class="col-md-6">
+				<ul class="bottom_ul">
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="#">Faq's</a></li>
+					<li><a href="#">Contact us</a></li>
+					<li><a href="#">Site Map</a></li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+
+
+
 	<div th:fragment="body-bottom-scripts">
 		<!-- Bootstrap core JavaScript
     ================================================== -->
@@ -95,8 +174,8 @@
 		<script th:src="@{/js/jquery.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<script th:src="@{/js/script.js}"></script>
-		
-		<!-- Data Table  --> 
+
+		<!-- Data Table  -->
 		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
 		<script th:src="@{/js/dataTables.bootstrap.min.js}"></script>
 	</div>
