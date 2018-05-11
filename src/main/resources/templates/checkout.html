@@ -56,7 +56,7 @@
 									</h3>
 								</div>
 							</div>
-							<div class="panel-footer alert-danger">Shipping and handling fees have not yet been applied.</div>
+<!-- 							<div class="panel-footer alert-danger">Shipping and handling fees have not yet been applied.</div> -->
 						</div>
 					</div>
 				</div>
@@ -195,6 +195,10 @@
 											<div class="form-group">
 												<label for="cardType">Select Card Type *: </label> <select
 													class="form-control" id="cardType" name="cardType">
+													<option value="Visa">Visa</option>
+													<option value="Master Card">Master Card</option>
+													<option value="Discover">Discover</option>
+													<option value="American Express">American Express</option>
 													<option th:each="cardType : ${list}" th:text="${cardType}" th:value="${cardType}"
 															th:selected="${payment.cardType == cardType}">
 															
@@ -230,6 +234,20 @@
 														<select class="form-control" name="expiryMonth"
 															required="required" th:value="${payment.expiryMonth}">
 															<option disabled="disabled">-- Month --</option>
+															<option value="01">Jan</option>
+															<option value="02">Feb</option>
+															<option value="03">Mar</option>
+															<option value="04">Apr</option>
+															<option value="05">May</option>
+															<option value="06">Jun</option>
+															<option value="07">Jul</option>
+															<option value="08">Aug</option>
+															<option value="09">Sep</option>
+															<option value="10">Oct</option>
+															<option value="11">Nov</option>
+															<option value="12">Dec</option>
+															
+															
 														<option th:each="month : ${monthList}" th:text="${month}" th:value="${month}"
 															th:selected="${payment.expiryMonth == month}">
 															
@@ -240,6 +258,15 @@
 														<select class="form-control" name="expiryYear"
 															th:value="${payment.expiryYear}">
 															<option disabled="disabled">-- Year --</option>
+															<option value="2018">2018</option>
+															<option value="2019">2019</option>
+															<option value="2020">2020</option>
+															<option value="2021">2021</option>
+															<option value="2022">2022</option>
+															<option value="2023">2023</option>
+															<option value="2024">2024</option>
+															<option value="2025">2025</option>
+														
 															<option th:each="year : ${yearList}" th:text="${year}" th:value="${year}"
 															th:selected="${payment.expiryYear == year}">
 															
@@ -341,14 +368,14 @@
 									<h4>Choose your shipping method:</h4>
 									<div class="radio">
 										<label> <input type="radio" name="shippingMethod"
-											value="groundShipping" checked="checked" /> Ground Shipping
+											value="groundShipping" checked="checked" /> Free Shipping
 										</label>
 									</div>
-									<div class="radio">
-										<label> <input type="radio" name="shippingMethod"
-											value="premiumShipping" /> Premium Shipping
-										</label>
-									</div>
+<!-- 									<div class="radio"> -->
+<!-- 										<label> <input type="radio" name="shippingMethod" -->
+<!-- 											value="premiumShipping" /> Premium Shipping -->
+<!-- 										</label> -->
+<!-- 									</div> -->
 
 									<div class="row">
 										<div class="col-xs-8">

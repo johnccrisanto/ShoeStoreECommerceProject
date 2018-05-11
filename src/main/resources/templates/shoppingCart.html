@@ -30,7 +30,7 @@
 						<a class="btn btn-primary"
 							th:href="@{/checkout(id=${shoppingCart.id})}">Check Out</a>
 					</div>
-					<br />
+					<br /><br />
 					<div th:if="${notEnoughStock}" class="alert alert-warning">
 						<p>Oops, some of the products don't have enough stock. Please
 							update product quantity.</p>

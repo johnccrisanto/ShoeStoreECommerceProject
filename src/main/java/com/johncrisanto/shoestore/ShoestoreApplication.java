@@ -21,7 +21,6 @@ public class ShoestoreApplication implements CommandLineRunner {
 	private UserService userService;
 
 	public static void main(String[] args) {
-		
 		SpringApplication.run(ShoestoreApplication.class, args);
 	}
 
